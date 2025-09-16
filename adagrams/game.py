@@ -30,13 +30,16 @@ LETTER_POOL = {
 }
 
 def available_letters():
+
     available_letters = []
+
     for letter, quantity in LETTER_POOL.items():
         available_letters.extend(([letter] * quantity))
     return available_letters
     
 
 def draw_letters():
+
     letters_list = available_letters()
     letters = []
     
@@ -46,14 +49,31 @@ def draw_letters():
         letters_list.pop(i)
 
     return letters
+
+def making_words_into_list(words):
+
+    usable_words = []
+
+    for letter in words:
+        usable_words.append(letter.upper())
     
+    return usable_words
+
 def uses_available_letters(word, letter_bank):
-    pass
+
+    split_word = making_words_into_list(word)
+
+    for letter in split_word:
+        if (letter not in letter_bank or 
+            split_word.count(letter)>letter_bank.count(letter)):
+            is_valid = False
+        else:
+            is_valid = True
+
+    return is_valid
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
-
-draw_letters()
